@@ -10,6 +10,30 @@
 
 2、安装FFmpeg工具（推荐版本3.1.3，新版本可能导致无法正常安装dataloader），下载地址在[这里](http://www.ffmpeg.org/releases/)：
 
+(1)、从网址下载需要的安装包，解压到需要的路径下，不建议在安装包所在的路径中解压；
+
+(2)、由于是从官方库中直接下载的老版本安装包，省略其他教程中可能存在的check版本操作：
+
+```
+git checkout 74c6a6d3735f79671b177a0e0c6f2db696c2a6d2.
+```
+
+(3)、在解压好的FFmpeg路径下执行如下命令：
+
+```
+make clean
+./configure --prefix=${FFMPEG_INSTALL_PATH} --enable-pic --disable-yasm --enable-shared
+make
+make install
+```
+
+(4)、此时应该就可以运行了，但如果权限不足可能还需要修改bashrc中的几个条目，将FFmpeg目录`${FFMPEG_INSTALL_PATH}/lib/`添加到相应的路径下`$LD_LIBRARY_PATH`，例如：
+
+```
+export PATH=$PATH:"/data/wanzhifan/tool/ffmpeg/bin"
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:"/data/wanzhifan/tool/ffmpeg/lib"
+```
+
 3、使用FFmpeg处理avi格式的视频到mp4格式；
 
 ```
@@ -29,14 +53,14 @@ ucfTrainTestlist中存放的是做动作识别的trainlist和testlist，同样�
 
 4、为了方便数据处理，在这里使用coviar的dataloader：
 
-首先更改`ops/coviar_loader/setup.py`文件中的内容，`/data/wanzhifan/tool/ffmpeg`指向自己的ffmpeg路径即可（不建议使用conda自带的ffmpeg，可以通过修改~/.bashrc中的路径来实现）：
+首先更改`ops/coviar_loader/setup.py`文件中的内容，`${FFMPEG_INSTALL_PATH}`指向自己的ffmpeg路径即可（不建议使用conda自带的ffmpeg，可以通过修改~/.bashrc中的路径来实现）：
 
 ```
 coviar_utils_module = Extension('coviar',
 		sources = ['coviar_loader.c'],
-		include_dirs=[np.get_include(), '/data/wanzhifan/tool/ffmpeg/include'],
+		include_dirs=[np.get_include(), '${FFMPEG_INSTALL_PATH}/include'],
 		extra_compile_args=['-DNDEBUG', '-O3'],
-		extra_link_args=['-lavutil', '-lavcodec', '-lavformat', '-lswscale', '-L/data/wanzhifan/tool/ffmpeg/lib/']
+		extra_link_args=['-lavutil', '-lavcodec', '-lavformat', '-lswscale', '-L/${FFMPEG_INSTALL_PATH}/lib/']
 )
 ```
 
@@ -68,7 +92,7 @@ Pillow
 sh pretrain.sh
 ```
 
-微调参数见见`cfg/finetune_ucf_config.py`，然后通过脚本运行，暂不支持多卡训练。
+微调参数见`cfg/finetune_ucf_config.py`，然后通过脚本运行，暂不支持多卡训练。
 
 ```
 sh finetuen.sh

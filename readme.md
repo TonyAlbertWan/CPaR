@@ -30,8 +30,8 @@ make install
 (4)、此时应该就可以运行了，但如果权限不足可能还需要修改bashrc中的几个条目，将FFmpeg目录`${FFMPEG_INSTALL_PATH}/lib/`添加到相应的路径下`$LD_LIBRARY_PATH`，例如：
 
 ```
-export PATH=$PATH:"/data/wanzhifan/tool/ffmpeg/bin"
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:"/data/wanzhifan/tool/ffmpeg/lib"
+export PATH=$PATH:"/tool/ffmpeg/bin"
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:"/tool/ffmpeg/lib"
 ```
 
 3、使用FFmpeg处理avi格式的视频到mp4格式；

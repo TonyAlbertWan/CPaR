@@ -111,6 +111,8 @@ sh finetuen.sh
 
 7、预训练数据
 
+链接：https://pan.baidu.com/s/1HhTPuacnh_rTMRH6izILkg  提取码：u23c
+
 预训练与微调的模型已经存在了```exp```目录下，目录名按照如下方式解读
 
 ```

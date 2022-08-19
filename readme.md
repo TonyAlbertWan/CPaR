@@ -6,6 +6,13 @@
 
 ### UCF101数据处理：
 
+0、如果直接使用MP4格式的数据进行训练，只需要修改```cfg/ucf_config.py```中路径与```dataset/dataset.py```文件中88与89行的文件名映射即可
+
+```
+#path_orig = path.replace('_rawvideo', '')[:-4] + '.avi'
+path_orig = path.replace('_rawvideo', '')[:-4] + '.mp4'
+```
+
 1、从[官网](https://www.crcv.ucf.edu/datasets/human-actions/ucf101/UCF101.rar)下载UCF101数据集，解压到data文件夹下；
 
 2、安装FFmpeg工具（推荐版本3.1.3，新版本可能导致无法正常安装dataloader），下载地址在[这里](http://www.ffmpeg.org/releases/)：
@@ -48,6 +55,10 @@ ucf101
   ├── UCF-101_rawvideo/
   └── ucfTrainTestlist/
 ```
+
+**请确保处理好过的MP4视频存放文件夹名为```{origin_dataset_name}_rawvideo```**
+
+**若自定义数据集的mp4文件无法正常提取关键帧，那么不妨先通过ffmpeg处理一下简化编码**
 
 ucfTrainTestlist中存放的是做动作识别的trainlist和testlist，同样可在[这个页面](https://www.crcv.ucf.edu/wp-content/uploads/2019/03/UCF101TrainTestSplits-RecognitionTask.zip)下载；
 

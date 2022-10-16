@@ -2,6 +2,37 @@
 
 介绍+插图
 
+太长不看：
+
+```python
+conda env list
+conda list
+
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/pro
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/msys2
+
+conda clean -i
+conda config --remove-key channels
+conda create -n 1 python=3.8
+conda install pytorch==1.10.0 torchvision==0.11.0 torchaudio==0.10.0 cudatoolkit=11.3 -c pytorch -c conda-forge
+
+# install ffmpeg-3.1.3 now
+
+pip install opencv-python
+pip install numpy
+pip install decord==0.4.0
+pip install Pillow
+
+conda uninstall ffmpeg
+conda install torchvision==0.11.0 -c pytorch
+#torchvision-0.11.0-py38_cu113
+```
+
+
+
 ## 数据预处理
 
 ### UCF101数据处理：

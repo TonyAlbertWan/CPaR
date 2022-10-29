@@ -5,6 +5,8 @@
 太长不看：
 
 ```python
+
+conda create -n your_env_name python=x.x
 conda env list
 conda list
 

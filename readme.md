@@ -23,6 +23,8 @@ conda install pytorch==1.10.0 torchvision==0.11.0 torchaudio==0.10.0 cudatoolkit
 
 # install ffmpeg-3.1.3 now
 
+pip3 install {package_name} -i https://pypi.tuna.tsinghua.edu.cn/simple
+
 pip install opencv-python
 pip install numpy
 pip install decord==0.4.0
